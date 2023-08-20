@@ -1,0 +1,1 @@
+export const URL_TO_GENERATE_USER = 'https://randomuser.me/api/?results=20'

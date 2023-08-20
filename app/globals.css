@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+button {
+  padding: 10px 30px;
+  background-color: green !important;
+  border-radius: 4px;
+
+  transition: all 400ms;
+}
+
+button:hover{
+  filter: brightness(0.6)
+}
