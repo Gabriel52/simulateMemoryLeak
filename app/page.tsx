@@ -1,6 +1,6 @@
 'use client'
 import { URL_TO_GENERATE_USER } from '@/const'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 
 export const FetchComponent = ():JSX.Element => {
   const [data, setData ] = useState<any>([])
