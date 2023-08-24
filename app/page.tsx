@@ -1,22 +1,26 @@
 'use client'
-import { URL_TO_GENERATE_USER } from '@/const/inde'
-import { useState, useEffect } from 'react'
+import { URL_TO_GENERATE_USER } from '@/const'
+import { useState, useEffect, useCallback } from 'react'
 
 export const FetchComponent = ():JSX.Element => {
   const [data, setData ] = useState<any>([])
-
-  const handleFetch = async()=>{
-    try{
-      const response = await fetch(URL_TO_GENERATE_USER)
-      const users = await response.json();
-      setData(users?.results)
-    }catch(err){
-      console.log(err)
-    }
-  }
-
+  
   useEffect(() => {
+    const controller = new AbortController()
+    const handleFetch = async ()=>{
+      try{
+        const response = await fetch(URL_TO_GENERATE_USER, {signal: controller.signal})
+        const users = await response.json();
+        setData(users?.results)
+      }catch(err){
+        console.log(err)
+      }
+    }  
+  
     handleFetch()
+    return ()=>{
+      controller.abort()
+    }
   }, [])
 
   return (
